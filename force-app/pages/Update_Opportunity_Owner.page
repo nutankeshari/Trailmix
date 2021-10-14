@@ -1,0 +1,9 @@
+<apex:page standardController="Opportunity" tabStyle="Opportunity" recordSetVar="AllOpps">
+  
+
+
+  <!-- <apex:repeat value="{!AllOpps}" var="row" rendered="false">
+      {!row.Id} {!row.ownerId}
+  </apex:repeat>-->
+  
+</apex:page>

@@ -1,0 +1,21 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes">
+	<aura:handler name="init" value="this" action="{!c.doInit}" />
+    
+    <aura:registerEvent name="change" type="c:RatingChangeEvent"/>
+       
+	<c:Rating change="{!c.myChangeHandler}"/>
+
+    <div class="white">
+        Hello, HTML!
+    </div>
+    <h2>Check out the style in this list.</h2>
+    <ul>
+        <li class="red">I'm red.</li>
+        <li class="blue">I'm blue.</li>
+        <li class="green">I'm green.</li>
+	</ul>
+    
+    <br/>
+    <br/>
+
+</aura:component>

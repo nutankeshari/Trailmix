@@ -1,0 +1,34 @@
+<aura:component controller="BoatSearchForm" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="lstOptions" type="BoatSearchForm[]" default="All Types"/>
+    <aura:attribute name="showNewButton" type="Boolean" default="false"/>
+    <aura:attribute name="selectedValue" type="String" default=""/>
+    
+    <aura:registerEvent name="boatSearchEvent" type="c:BoatSearchResultEvent"/>
+    
+    <aura:registerEvent name="formsubmit" type="c:formsubmit"/>
+    
+    <lightning:layout horizontalAlign="center">
+        <lightning:layoutItem class="slds-grid_vertical-align-center" > 
+            <ui:inputSelect aura:id="selectListId" value="{!v.selectedValue}">
+                <aura:iteration items="{!v.lstOptions}" var="varOpt">
+                  <option value="{!varOpt.value}" text="{!varOpt.name}"></option>
+                </aura:iteration>
+            </ui:inputSelect>
+            <lightning:select aura:id="boatTypes" label="Please select" name="selectType"
+                                          onchange="{!c.handleChange}">
+                            <option value="">All Types</option>
+                            <aura:iteration items="{!v.BoatTypes}" var="boatType">
+                                <option value="{!boatType.Id}" text="{!boatType.Name}"/>
+                            </aura:iteration>
+                        </lightning:select>
+        </lightning:layoutItem>
+        
+        <lightning:layoutItem class="slds-grid_vertical-align-center margin-class"> 
+            <lightning:button label="Search" variant="brand" onclick="{!c.onFormSubmit}"/>
+            <aura:if isTrue="{!v.showNewButton}">
+                <lightning:button variant="neutral" label="New" onclick="{!c.createBoat}"/>
+            </aura:if>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

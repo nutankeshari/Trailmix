@@ -1,0 +1,33 @@
+<aura:component controller="BoatSearchResults" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="lstBoats" type="Boat__c"/>
+    <aura:attribute name="boats" type="Boat__c"/>
+    <aura:attribute name="boatTypeId" type="String" default=""/>
+    <aura:handler name="init" value="{!this}" action="{!c.doSearch}" />
+    
+    <aura:attribute name="selectedBoatId" type="String"/>
+    
+    <aura:handler name="boatselect" event="c:BoatSelect" action="{!c.onBoatSelect}"/>
+    
+    <aura:method name="search" description="accepts boatTypeId
+            and executes search that refreshes the boats attribute">
+        <aura:attribute name="boatId" type="Id"/>
+    </aura:method>
+    
+     <lightning:layout horizontalAlign="centre" multipleRows="true">
+    <aura:if isTrue="{!not(empty(v.boats))}">
+       
+            <aura:iteration items="{!v.boats}" var="boat">
+                <lightning:layoutItem flexibility="grow" >   
+                <c:BoatTile boat="{!boat}" selected="{!v.selectedBoatId == boat.Id ? true : false}"/>
+                </lightning:layoutItem>
+            </aura:iteration>
+       
+        
+        <aura:set attribute="else">
+            <div class="slds-align_absolute-center">No boats found</div>
+        </aura:set>
+    </aura:if>
+     </lightning:layout>
+   
+</aura:component>

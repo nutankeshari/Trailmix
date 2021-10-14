@@ -1,0 +1,6 @@
+<apex:page standardController="Lead" recordSetvar="leads">
+
+   <flow:interview name="Lead_Owner_Change" finishLocation="{!URLFOR($Action.Lead.Tab, $ObjectType.Lead)}"> 
+       <apex:param name="ListLead" value="{!Selected}"/>
+   </flow:interview>
+</apex:page>
